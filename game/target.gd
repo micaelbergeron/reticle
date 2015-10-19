@@ -17,7 +17,7 @@ func _ready():
 	
 	collision.set_pos(Vector2(1,1))
 	collision.set_shape(shape)
-	
+
 	add_child(collision)
 	shape.set_radius(outerRadius)
 	
