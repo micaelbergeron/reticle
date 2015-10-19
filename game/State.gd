@@ -1,10 +1,11 @@
-export var key = ""
+var key = ""
 
 func process(delta):
+	#when complete call ==> emit_signal("on_state_completed", result)
 	pass
 
-func onEnter():
-	emit_signal("on_state_enter", key)
+func _onEnter():
+	pass
 
-func onExit():
-	emit_signal("on_state_exit", key)
+func _onExit():
+	pass

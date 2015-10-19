@@ -1,21 +1,32 @@
 extends "State.gd"
 
-export var states = []
+var states = []
 var current_state = null
 
 func _ready():
-	pass
-	
+	set_process(true)
+
+func _getNextState():
+	return null
+
 func changeState(newState):
 	if current_state != null:
-		current_state.disconnect("on_state_exit", self, "onStateExit")
+		current_state.disconnect("on_state_completed", self, "_onStateCompleted")
+		current_state = null
 		
-	current_state = newState
-	current_state.connect("on_state_exit", self, "onStateExit")
+	current_state.connect("on_state_completed", self, "_onStateCompleted")
 	
-func process(delta):
+	current_state.onEnter()
+	current_state = newState
+
+func _process(delta):
 	if current_state != null:
 		current_state.process(delta)
+
+func _onStateCompleted():
+	var nextState = _getNextState()
 	
-func onStateExit():
-	pass
+	if nextState != null:
+		changeState(nextState)
+	else:
+		_onExit()
