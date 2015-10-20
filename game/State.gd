@@ -1,14 +1,12 @@
 
-extends Node
-
 var key = ""
 var refNode
 
 func _init(ref_node):
+	add_user_signal("on_state_completed")
 	refNode = ref_node
 
-func process(delta):
-	#when complete call ==> emit_signal("on_state_completed", result)
+func _process(delta):
 	pass
 
 func _onEnter():

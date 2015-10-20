@@ -1,3 +1,4 @@
+
 extends Area2D
 
 export var innerColor = Color(1,1,1)
@@ -15,7 +16,7 @@ var inner_press_count = 0
 var outer_press_count = 0
 
 func _ready():
-	get_parent().add_user_signal("on_target_shot")
+	add_user_signal("on_target_shot")
 	
 	collision = CollisionShape2D.new()
 	shape = CircleShape2D.new()
@@ -40,11 +41,10 @@ func _input_event(viewport, event, shape_idx):
 		event = make_input_local(event)
 
 		if (event.pos.length() < innerRadius):
-			get_parent().emit_signal("on_target_shot", ACCURACY_INNER)
+			emit_signal("on_target_shot", ACCURACY_INNER)
 			inner_press_count = inner_press_count + 1
 		else:
-			get_parent().emit_signal("on_target_shot", ACCURACY_OUTER)
+			emit_signal("on_target_shot", ACCURACY_OUTER)
 			outer_press_count = outer_press_count + 1
 		
-		get_node("label").set_text(str(inner_press_count) + " " + str(outer_press_count))
-
+		get_node("Label").set_text(str(inner_press_count) + " " + str(outer_press_count))
