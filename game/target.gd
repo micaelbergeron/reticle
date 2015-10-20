@@ -35,10 +35,10 @@ func _input_event(viewport, event, shape_idx):
 		event = make_input_local(event)
 		
 		if (event.pos.length() < innerRadius):
-			emit_signal("inner_press_count")
+			emit_signal("on_target_shot", "inner")
 			inner_press_count = inner_press_count + 1
 		else:
-			emit_signal("outer_press_count")
+			emit_signal("on_target_shot", "outer")
 			outer_press_count = outer_press_count + 1
 		
 		get_node("label").set_text(str(inner_press_count) + " " + str(outer_press_count))
