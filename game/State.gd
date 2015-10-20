@@ -1,4 +1,6 @@
 
+extends Node
+
 var key = ""
 var refNode
 
