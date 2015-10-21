@@ -30,13 +30,16 @@ func _ready():
 	set_process(true)
 
 func _process(delta):
-	update()
+	#update()
+	pass
 
 func _draw():
 	draw_circle(Vector2(0,0), outerRadius, outerColor)
 	draw_circle(Vector2(0,0), innerRadius, innerColor)
-	
+
 func _input_event(viewport, event, shape_idx):
+	print("input_event")
+
 	if (event.type == InputEvent.MOUSE_BUTTON && event.button_index == 1 && event.pressed):
 		event = make_input_local(event)
 
