@@ -21,7 +21,7 @@ func _ready():
 	collision = CollisionShape2D.new()
 	shape = CircleShape2D.new()
 	
-	#collision.set_pos(Vector2(1,1))
+	collision.set_pos(Vector2(1,1))
 	collision.set_shape(shape)
 
 	add_child(collision)
@@ -37,15 +37,13 @@ func _draw():
 	draw_circle(Vector2(0,0), outerRadius, outerColor)
 	draw_circle(Vector2(0,0), innerRadius, innerColor)
 
-func _input_event(viewport, event, shape_idx):
-	if (event.type == InputEvent.MOUSE_BUTTON && event.button_index == 1 && event.pressed):
-		event = make_input_local(event)
-
-		if (event.pos.length() < innerRadius):
-			emit_signal("on_target_shot", ACCURACY_INNER)
-			inner_press_count = inner_press_count + 1
-		else:
-			emit_signal("on_target_shot", ACCURACY_OUTER)
-			outer_press_count = outer_press_count + 1
-		
-		get_node("Label").set_text(str(inner_press_count) + " " + str(outer_press_count))
+func shot(position):
+	position = get_global_transform().affine_inverse().xform(position)
+	if (position.length() < innerRadius):
+		emit_signal("on_target_shot", ACCURACY_INNER)
+		inner_press_count = inner_press_count + 1
+	else:
+		emit_signal("on_target_shot", ACCURACY_OUTER)
+		outer_press_count = outer_press_count + 1
+	
+	get_node("Label").set_text(str(inner_press_count) + " " + str(outer_press_count))
