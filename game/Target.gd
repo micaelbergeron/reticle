@@ -6,14 +6,10 @@ export var outerColor = Color(1,0,0)
 export var innerRadius = 25
 export var outerRadius = 50
 
-const ACCURACY_INNER = 0
-const ACCURACY_OUTER = 1
-
 var collision
 var shape
 
-var inner_press_count = 0
-var outer_press_count = 0
+var press_count = 0
 
 func _ready():
 	add_user_signal("on_target_shot")
@@ -26,28 +22,17 @@ func _ready():
 
 	add_child(collision)
 	shape.set_radius(outerRadius)
-	
-	set_process(true)
-
-func _process(delta):
-	#update()
-	pass
 
 func _draw():
 	draw_circle(Vector2(0,0), outerRadius, outerColor)
 	draw_circle(Vector2(0,0), innerRadius, innerColor)
 
 func _input_event(viewport, event, shape_idx):
-	print("input_event")
-
 	if (event.type == InputEvent.MOUSE_BUTTON && event.button_index == 1 && event.pressed):
 		event = make_input_local(event)
 
-		if (event.pos.length() < innerRadius):
-			emit_signal("on_target_shot", ACCURACY_INNER)
-			inner_press_count = inner_press_count + 1
-		else:
-			emit_signal("on_target_shot", ACCURACY_OUTER)
-			outer_press_count = outer_press_count + 1
+		var accuracy = event.pos.length() / outerRadius;
+		press_count = press_count + 1
 		
-		get_node("Label").set_text(str(inner_press_count) + " " + str(outer_press_count))
+		emit_signal("on_target_shot", accuracy)
+		get_node("Label").set_text(str(press_count))
