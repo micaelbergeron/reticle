@@ -22,12 +22,6 @@ func _ready():
 
 	add_child(collision)
 	shape.set_radius(outerRadius)
-	
-	set_process(true)
-
-func _process(delta):
-	#update()
-	pass
 
 func _draw():
 	draw_circle(Vector2(0,0), outerRadius, outerColor)

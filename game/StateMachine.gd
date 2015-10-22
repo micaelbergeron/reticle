@@ -3,7 +3,7 @@ extends "State.gd"
 var states = []
 var current_state = null
 
-func _init(ref_node).(ref_node):
+func _init(root_node, ref_node).(root_node, ref_node):
 	pass
 
 func _getNextState():
