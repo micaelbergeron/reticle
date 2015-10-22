@@ -21,7 +21,7 @@ func _ready():
 	collision = CollisionShape2D.new()
 	shape = CircleShape2D.new()
 	
-	collision.set_pos(Vector2(1,1))
+	#collision.set_pos(Vector2(1,1))
 	collision.set_shape(shape)
 
 	add_child(collision)
@@ -38,8 +38,6 @@ func _draw():
 	draw_circle(Vector2(0,0), innerRadius, innerColor)
 
 func _input_event(viewport, event, shape_idx):
-	print("input_event")
-
 	if (event.type == InputEvent.MOUSE_BUTTON && event.button_index == 1 && event.pressed):
 		event = make_input_local(event)
 
