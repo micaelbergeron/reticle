@@ -10,12 +10,11 @@ var tracks = {
 	"rolling_on":	preload("res://music/rolling_on.ogg"),
 }
 
-func _init(root):
-	# register in dependency_container
-	pass
+func _init():
+	self.set_volume_db(-12.0)
 
 func _ready():
-	play("precipice")
+	play("laconia")
 	pass
 	
 func play(track_name):

@@ -1,4 +1,3 @@
-
 extends Node2D
 
 var dependency_container = preload('res://dependency_container.gd').new()
