@@ -27,6 +27,8 @@ func _onEnter():
 
 func _onTargetShot(accuracy):
 	root_node.dependency_container.OverlayHelper.show_text_overlay(accuracy, timer, target.get_pos())
+	root_node.dependency_container.ParticleManager.show_spark_particle(target.get_pos())
+	
 	print("Accuracy: " + str(accuracy) + " Time: " + str(timer))
 	emit_signal("on_state_completed")
 
