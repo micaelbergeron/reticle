@@ -13,7 +13,7 @@ func _ready():
 	sfx = camera.get_node("sfx")
 	
 	crosshair.set_pos(camera.get_viewport().get_rect().size/2)
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	set_fixed_process(true)
 	set_process_input(true)
 
