@@ -36,5 +36,4 @@ func _input(event):
 		fire = true
 	
 func reticle_pos():
-	#camera.get_viewport_rect()
 	return camera.get_camera_pos()
