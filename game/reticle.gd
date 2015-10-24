@@ -26,7 +26,7 @@ func _fixed_process(delta):
 		if (not result.empty()):
 			result[0].collider.call_deferred("shot", camera.get_camera_screen_center())
 		fire = false
-
+	
 	crosshair.get_node("mouse_pos").set_text("%s" % crosshair.get_pos())
 	camera.set_pos(camera.get_viewport().get_mouse_pos())
 

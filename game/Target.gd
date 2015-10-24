@@ -31,10 +31,9 @@ func _draw():
 
 func shot(position):
 	sfx.play("target_hit")
-	position = get_global_transform().affine_inverse().xform(position)
-	var accuracy = position.length() / outerRadius;
-	if (position.length() < innerRadius):
-		emit_signal("on_target_shot", accuracy)
-	else:
-		emit_signal("on_target_shot", accuracy)
-
+	
+	var local_position = get_global_transform().affine_inverse().xform(position)
+	var accuracy = local_position.length() / outerRadius;
+	
+	emit_signal("on_target_shot", accuracy, position)
+	
