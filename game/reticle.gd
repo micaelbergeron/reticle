@@ -37,3 +37,6 @@ func _input(event):
 	
 func reticle_pos():
 	return camera.get_camera_pos()
+
+func get_hud_node():
+	return get_node("hud")
