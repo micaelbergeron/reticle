@@ -25,8 +25,9 @@ func _ready():
 	shape.set_radius(outerRadius)
 
 func _draw():
-	draw_circle(Vector2(0,0), outerRadius, outerColor)
-	draw_circle(Vector2(0,0), innerRadius, innerColor)
+	pass
+	#draw_circle(Vector2(0,0), outerRadius, outerColor)
+	#draw_circle(Vector2(0,0), innerRadius, innerColor)
 
 func shot(position):
 	sfx.play("target_hit")

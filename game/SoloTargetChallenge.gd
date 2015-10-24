@@ -1,5 +1,8 @@
 extends "State.gd"
 
+export var targetInnerRadius = 12
+export var targetOuterRadius = 30
+
 var timer
 var target
 var target_scene = preload("res://Target.scn")
@@ -18,8 +21,8 @@ func _onEnter():
 	randomize()
 	target.set_pos(Vector2(rand_range(0,1920),rand_range(0,1080)))
 	
-	target.innerRadius = 10
-	target.outerRadius = 20
+	target.innerRadius = targetInnerRadius
+	target.outerRadius = targetOuterRadius
 	
 	ref_node.add_child(target)
 	

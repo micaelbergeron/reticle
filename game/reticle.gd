@@ -12,6 +12,8 @@ func _ready():
 	crosshair = get_node("hud/crosshair")
 	sfx = camera.get_node("sfx")
 	
+	print(camera.get_pos())
+	print(camera.get_camera_screen_center())
 	crosshair.set_pos(camera.get_viewport().get_rect().size/2)
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	set_fixed_process(true)
