@@ -13,7 +13,7 @@ func _ready():
 	sfx = camera.get_node("sfx")
 	
 	crosshair.set_pos(camera.get_viewport().get_rect().size/2)
-	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	set_fixed_process(true)
 	set_process_input(true)
 
@@ -24,7 +24,7 @@ func _fixed_process(delta):
 		if (not result.empty()):
 			result[0].collider.call_deferred("shot", camera.get_camera_screen_center())
 		fire = false
-
+	
 	crosshair.get_node("mouse_pos").set_text("%s" % crosshair.get_pos())
 	camera.set_pos(camera.get_viewport().get_mouse_pos())
 
@@ -36,4 +36,5 @@ func _input(event):
 		fire = true
 	
 func reticle_pos():
+	#camera.get_viewport_rect()
 	return camera.get_camera_pos()
