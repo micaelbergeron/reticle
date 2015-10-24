@@ -55,8 +55,7 @@ func _onTargetShot(accuracy, position):
 	root_node.dependency_container.ParticleManager.show_spark_particle(position)
 	root_node.dependency_container.ScoreManager.setAccuracyAndTime(accuracy, timer)
 	
-	print("Accuracy: " + str(accuracy) + " Time: " + str(timer))
-	emit_signal("on_state_completed")
+	emit_signal("on_state_completed", target)
 
 func _onExit():
 	target.queue_free()
