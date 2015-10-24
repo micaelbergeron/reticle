@@ -52,11 +52,12 @@ func _onEnter():
 
 func _onTargetShot(accuracy, position):
 	root_node.dependency_container.OverlayHelper.show_text_overlay(accuracy, timer, target.get_pos())
+	root_node.dependency_container.ParticleManager.show_target_break_particle(target, position)
 	root_node.dependency_container.ParticleManager.show_spark_particle(position)
 	root_node.dependency_container.ScoreManager.setAccuracyAndTime(accuracy, timer)
 	
 	print("Accuracy: " + str(accuracy) + " Time: " + str(timer))
 	emit_signal("on_state_completed")
-
+	
 func _onExit():
 	target.queue_free()
