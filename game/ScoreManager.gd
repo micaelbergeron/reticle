@@ -15,8 +15,6 @@ func _ready():
 	timeScoreLabel = get_node("TimeScore")
 
 func setAccuracyAndTime(accuracy, time):
-	print(lastShotCurrentIndex)
-	
 	lastAccuracies[lastShotCurrentIndex] = accuracy
 	lastTimes[lastShotCurrentIndex] = time
 	

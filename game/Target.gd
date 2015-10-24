@@ -12,6 +12,7 @@ var shape
 var sfx
 var sprite
 var press_count = 0
+var shot_count = 0
 
 func _ready():
 	add_user_signal("on_target_shot")
@@ -34,7 +35,9 @@ func _set_child_colors():
 	spriteMat.set_shader_param("outerTint", outerColor)
 
 func shot(position):
-	sfx.play("target_hit")	
+	shot_count = shot_count + 1
+	sfx.play("target_hit")
+	
 	var local_position = get_global_transform().affine_inverse().xform(position)
 	var accuracy = local_position.length() / outerRadius;
 	emit_signal("on_target_shot", accuracy, position)
