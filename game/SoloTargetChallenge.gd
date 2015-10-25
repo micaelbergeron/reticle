@@ -55,7 +55,8 @@ func _onShotFired(shot_args):
 		root_node.dependency_container.OverlayHelper.show_text("Miss!", shot_args["global_pos"])
 
 func _onTargetShot(shot_args):
-	root_node.dependency_container.OverlayHelper.show_text_overlay(shot_args["accuracy"], timer, target.get_pos())
+	shot_args["timer"] = timer
+	root_node.dependency_container.OverlayHelper.show_hit_text(shot_args, target.get_pos())
 	root_node.dependency_container.ParticleManager.show_target_break_particle(target, shot_args["global_pos"])
 	root_node.dependency_container.ParticleManager.show_spark_particle(shot_args["global_pos"])
 	root_node.dependency_container.ScoreManager.setAccuracyAndTime(shot_args["accuracy"], timer)

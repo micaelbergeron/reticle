@@ -24,11 +24,11 @@ func show_target_break_particle(target, pos):
 	
 func _start_emitting(emitter):
 	var timer = Timer.new()
-	#timer.set_one_shot(true)
-	#timer.set_wait_time(emitter.get_lifetime())
-	#timer.start()
-	#add_child(timer)
+	timer.set_one_shot(true)
+	timer.set_wait_time(emitter.get_lifetime())
+	timer.start()
+	add_child(timer)
 	
 	emitter.set_emitting(true)
-	#yield(timer, "timeout")
-	#emitter.queue_free()
+	yield(timer, "timeout")
+	emitter.queue_free()
