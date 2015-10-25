@@ -28,7 +28,10 @@ func _ready():
 	add_child(collision)
 	shape.set_radius(outerRadius)
 	#_set_child_colors()
-	
+
+func _enter_tree():
+	get_node("anim").play("spawn")
+
 func _set_child_colors():
 	var spriteMat = sprite.get_material()
 	spriteMat.set_shader_param("innerTint", innerColor)
