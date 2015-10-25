@@ -1,8 +1,11 @@
-Reticle
+## Reticle
+### Target practice, like a boss!
 
-Reticle is a game created in the context of Gaming On Linux Game Jam. This is a "target practice" playing style game, with the aim to practice our precision with mouse.
-The player's result is based on the speed to click a target and also the accuracy of the click.
+Reticle is a game created in the context of Gaming On Linux Game Jam. This is a "target practice" playing style game. Our *aim* is to practice our precision with a mouse in a fun way.
 
+The player's score is based on the reaction time and the accuracy of the click.
+
+### Credits
 Song used:
 
 Laconia by Avaren
@@ -11,7 +14,30 @@ https://soundcloud.com/avaren
 Sound effects are from http://www.freesound.org/
 Background pattern from subtlepatterns.com
 
-Developers:
+### License
+The MIT License (MIT)
 
-Micael Bergeron
-Kaven Thériault
+Copyright (c) 2015 Kaven Thériault, Micaël Bergeron
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+
+### Made with a lot of love, by:
+Micael Bergeron <micaelbergeron@gmail.com>
+Kaven Thériault <kaven@leetzone.ca>
