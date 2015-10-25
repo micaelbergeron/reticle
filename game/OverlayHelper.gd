@@ -14,4 +14,10 @@ func show_text_overlay(accuracy, time, pos):
 	
 	add_child(text_overlay)
 	text_overlay.start_animation()
-	
+
+func show_text(text, pos):
+	var text_overlay = TextOverlay.instance()
+	text_overlay.text = text
+	text_overlay.set_pos(pos)
+	add_child(text_overlay)
+	text_overlay.start_animation()

@@ -16,7 +16,6 @@ func _onEnter():
 	
 	var reticle_pos = root_node.dependency_container.reticle.camera.get_camera_screen_center()
 	var viewport_rect = root_node.dependency_container.reticle.camera.get_viewport_rect()
-	
 	var reticle_rect = Rect2(reticle_pos.x - viewport_rect.size.x/2,reticle_pos.y - viewport_rect.size.y/2,reticle_pos.x + viewport_rect.end.x/2,reticle_pos.y + viewport_rect.size.y/2)
 	
 	var minXRange
@@ -48,13 +47,18 @@ func _onEnter():
 	target.set_pos(Vector2(rand_range(minXRange, minYRange),rand_range(maxXRange, maxYRange)))
 	
 	ref_node.add_child(target)
-	target.connect("on_target_shot", self, "_onTargetShot")
+	target.connect("on_target_shot", self, "_onTargetShot", [], self.CONNECT_DEFERRED)
+	root_node.dependency_container.reticle.connect("on_shot_fired", self, "_onShotFired")
 
-func _onTargetShot(accuracy, position):
-	root_node.dependency_container.OverlayHelper.show_text_overlay(accuracy, timer, target.get_pos())
-	root_node.dependency_container.ParticleManager.show_target_break_particle(target, position)
-	root_node.dependency_container.ParticleManager.show_spark_particle(position)
-	root_node.dependency_container.ScoreManager.setAccuracyAndTime(accuracy, timer)
+func _onShotFired(shot_args):
+	if (shot_args["hit"] == null):
+		root_node.dependency_container.OverlayHelper.show_text("Miss!", shot_args["global_pos"])
+
+func _onTargetShot(shot_args):
+	root_node.dependency_container.OverlayHelper.show_text_overlay(shot_args["accuracy"], timer, target.get_pos())
+	root_node.dependency_container.ParticleManager.show_target_break_particle(target, shot_args["global_pos"])
+	root_node.dependency_container.ParticleManager.show_spark_particle(shot_args["global_pos"])
+	root_node.dependency_container.ScoreManager.setAccuracyAndTime(shot_args["accuracy"], timer)
 	emit_signal("on_state_completed", target)
 
 func _onExit():

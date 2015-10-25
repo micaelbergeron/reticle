@@ -15,8 +15,8 @@ func show_spark_particle(pos):
 
 func show_target_break_particle(target, pos):
 	var target_break_particle = TargetBreakParticle.instance()
-	target_break_particle.get_material().set_shader_param("innerTint", target.innerColor)
-	target_break_particle.get_material().set_shader_param("outerTint", target.outerColor)
+	#target_break_particle.get_material().set_shader_param("innerTint", target.innerColor)
+	#target_break_particle.get_material().set_shader_param("outerTint", target.outerColor)
 	target_break_particle.set_pos(pos)
 	add_child(target_break_particle)
 	_start_emitting(target_break_particle)
