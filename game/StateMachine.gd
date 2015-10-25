@@ -33,6 +33,7 @@ func _startNextState():
 		changeState(nextState)
 	else:
 		_onExit()
+		emit_signal("on_state_completed")
 
 func _onStateCompleted():
 	_startNextState()

@@ -30,6 +30,7 @@ func _onTargetShot(shot_args):
 	
 	target.queue_free()
 	timer = 0
+	target_shot = target_shot + 1
 	
 	if target_shot == target_quantity:
 		emit_signal("on_state_completed")

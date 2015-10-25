@@ -1,5 +1,4 @@
 
-var key = ""
 var root_node
 var ref_node
 
