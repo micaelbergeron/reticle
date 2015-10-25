@@ -12,6 +12,7 @@ var tracks = {
 
 func _init():
 	self.set_volume_db(-12.0)
+	self.set_loop(true)
 
 func _ready():
 	play("laconia")
@@ -20,7 +21,9 @@ func _ready():
 func play(track_name):
 	if (!tracks.has(track_name)): 
 		return
+		
 	
-	stop()
+	
+	.stop()
 	set_stream(tracks[track_name])
 	.play()
