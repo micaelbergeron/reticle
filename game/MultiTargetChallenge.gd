@@ -1,30 +1,35 @@
 
-extends "State.gd"
+extends "TargetChallenge.gd"
 
 var target_quantity = 3
 var target_shot = 0
 
+var timer
 var targets={}
-var solo_target_class = preload("res://SoloTargetChallenge.gd")
+var target_scene = preload("res://Target.scn")
 
 func _init(root_node, ref_node).(root_node, ref_node):
 	pass
 
 func _process(delta):
-	for i in range(target_quantity):
-		targets[i]._process(delta)
+	timer = timer + delta
 
 func _onEnter():
+	timer = 0
+	
 	for i in range(target_quantity):
-		var target = solo_target_class.new(root_node, ref_node)
-		targets[i] = target
+		var target = target_scene.instance()
+		target.set_pos(getPosInVisibleScreen())
 		
-		target.connect("on_state_completed", self, "_onStateCompleted")
-		target._onEnter()
+		ref_node.add_child(target)
+		target.connect("on_target_shot", self, "_onTargetShot", [])
 
-func _onStateCompleted(target):
-	target_shot = target_shot + 1
+func _onTargetShot(shot_args):
+	var target = shot_args["target"]
+	sendShotInfoToManagers(shot_args, target, timer)
+	
 	target.queue_free()
+	timer = 0
 	
 	if target_shot == target_quantity:
 		emit_signal("on_state_completed")
