@@ -8,7 +8,7 @@ var solo_target_class = preload("res://SoloTargetChallenge.gd")
 func _init(root_node, ref_node).(root_node, ref_node):
 	pass
 	
-func _onStateCompleted(target):
+func _onStateCompleted():
 	target_shot = target_shot + 1
 	._onStateCompleted()
 

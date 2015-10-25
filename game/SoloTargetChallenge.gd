@@ -1,4 +1,4 @@
-extends "State.gd"
+extends "TargetChallenge.gd"
 
 var timer
 var target
@@ -13,54 +13,13 @@ func _process(delta):
 func _onEnter():
 	timer = 0
 	target = target_scene.instance()
-	
-	var reticle_pos = root_node.dependency_container.reticle.camera.get_camera_screen_center()
-	var viewport_rect = root_node.dependency_container.reticle.camera.get_viewport_rect()
-	var reticle_rect = Rect2(reticle_pos.x - viewport_rect.size.x/2,reticle_pos.y - viewport_rect.size.y/2,reticle_pos.x + viewport_rect.end.x/2,reticle_pos.y + viewport_rect.size.y/2)
-	
-	var minXRange
-	var maxXRange
-	var minYRange
-	var maxYRange
-	
-	if reticle_rect.pos.x > viewport_rect.pos.x:
-		minXRange = reticle_rect.pos.x
-	else:
-		minXRange = viewport_rect.pos.x
-		
-	if reticle_rect.pos.y > viewport_rect.pos.y:
-		maxXRange = reticle_rect.pos.y
-	else:
-		maxXRange = viewport_rect.pos.y
-		
-	if reticle_rect.size.x < viewport_rect.size.x:
-		minYRange = reticle_rect.size.x
-	else:
-		minYRange = viewport_rect.size.x
-		
-	if reticle_rect.size.y < viewport_rect.size.y:
-		maxYRange = reticle_rect.size.y
-	else:
-		maxYRange = viewport_rect.size.y
-	
-	randomize()
-	target.set_pos(Vector2(rand_range(minXRange, minYRange),rand_range(maxXRange, maxYRange)))
-	
+	target.set_pos(getPosInVisibleScreen())
 	ref_node.add_child(target)
-	target.connect("on_target_shot", self, "_onTargetShot", [], self.CONNECT_DEFERRED)
-	root_node.dependency_container.reticle.connect("on_shot_fired", self, "_onShotFired")
-
-func _onShotFired(shot_args):
-	if (shot_args["hit"] == null):
-		root_node.dependency_container.OverlayHelper.show_text("Miss!", shot_args["global_pos"])
+	target.connect("on_target_shot", self, "_onTargetShot", [])
 
 func _onTargetShot(shot_args):
-	shot_args["timer"] = timer
-	root_node.dependency_container.OverlayHelper.show_hit_text(shot_args, target.get_pos())
-	root_node.dependency_container.ParticleManager.show_target_break_particle(target, shot_args["global_pos"])
-	root_node.dependency_container.ParticleManager.show_spark_particle(shot_args["global_pos"])
-	root_node.dependency_container.ScoreManager.setAccuracyAndTime(shot_args["accuracy"], timer)
-	emit_signal("on_state_completed", target)
+	sendShotInfoToManagers(shot_args, target, timer)
+	emit_signal("on_state_completed")
 
 func _onExit():
 	target.queue_free()

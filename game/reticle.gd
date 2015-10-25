@@ -8,6 +8,11 @@ var sfx
 var fire = false
 var fire_position = Vector2(0,0)
 
+var root_node
+
+func init(root_node):
+	self.root_node = root_node
+
 func _ready():
 	add_user_signal("on_shot_fired")
 	
@@ -29,8 +34,12 @@ func _fixed_process(delta):
 		if (not result.empty()):
 			result[0].collider.call_deferred("shot", fire_position)
 			shot_args["hit"] = result[0].collider
+		
 		fire = false
 		emit_signal("on_shot_fired", shot_args)
+		
+		if (shot_args["hit"] == null):
+			root_node.dependency_container.OverlayHelper.show_text("Miss!", shot_args["global_pos"])
 
 	crosshair.get_node("mouse_pos").set_text("%s" % crosshair.get_pos())
 	camera.set_pos(camera.get_viewport().get_mouse_pos())

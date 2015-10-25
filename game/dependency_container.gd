@@ -9,6 +9,7 @@ var MusicManager = preload("res://MusicManager.gd").new()
 func init_root(root_node):
 	self.root_node = root_node
 	
+	reticle.init(root_node)
 	root_node.add_child(reticle)
 	reticle.get_hud_node().add_child(ScoreManager)
 	

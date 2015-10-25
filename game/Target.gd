@@ -43,6 +43,7 @@ func shot(position):
 	
 	var local_position = get_global_transform().affine_inverse().xform(position)
 	emit_signal("on_target_shot", {
+		"target" : self,
 		"accuracy": local_position.length() / outerRadius,
 		"global_pos": position,
 		"mouse_speed": Input.get_mouse_speed(),
